@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phòng ban | Quản lý phiếu yêu cầu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="phong">
+
+    <!-- Khôi phục trạng thái menu trước khi vẽ để tránh giật layout -->
+    <script>try{if(localStorage.getItem("pyc_menu")==="an")document.body.classList.add("sidebar-collapsed");}catch(e){}</script>
+    <div class="app">
+        <aside class="sidebar" id="sidebar"></aside>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+
+        <div class="main-area">
+            <header class="topbar" id="topbar"></header>
+
+            <div class="page">
+                <div class="page-head">
+                    <div>
+                        <h2>Danh mục phòng ban<small>Quản lý mã phòng và tên phòng sử dụng trong phiếu yêu cầu</small></h2>
+                    </div>
+                    <div class="spacer"></div>
+                    <button type="button" class="btn btn-primary" id="btnAddDept">&#43; Thêm phòng</button>
+                </div>
+
+                <section class="card mb-0">
+                    <div class="card-head">
+                        <h3>Danh sách phòng <small>(<span id="deptCount">0</span> phòng)</small></h3>
+                    </div>
+
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <span class="ico">&#128269;</span>
+                            <input type="text" id="fSearchDept" class="form-control"
+                                   placeholder="Tìm theo mã phòng, tên phòng, trưởng phòng...">
+                        </div>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="data" style="min-width:760px">
+                            <thead>
+                                <tr>
+                                    <th>Mã phòng</th>
+                                    <th>Tên phòng</th>
+                                    <th>Trưởng phòng</th>
+                                    <th class="text-center">Nhân sự</th>
+                                    <th class="text-center">Phiếu phụ trách</th>
+                                    <th class="text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="deptBody"></tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-root" class="backdrop"></div>
+    <div class="toast-wrap"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết phiếu yêu cầu | Quản lý phiếu yêu cầu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="detail">
+
+    <!-- Khôi phục trạng thái menu trước khi vẽ để tránh giật layout -->
+    <script>try{if(localStorage.getItem("pyc_menu")==="an")document.body.classList.add("sidebar-collapsed");}catch(e){}</script>
+    <div class="app">
+        <aside class="sidebar" id="sidebar"></aside>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+
+        <div class="main-area">
+            <header class="topbar" id="topbar"></header>
+
+            <!-- Toàn bộ nội dung chi tiết được dựng bằng JavaScript -->
+            <div class="page" id="detailRoot"></div>
+        </div>
+    </div>
+
+    <div id="modal-root" class="backdrop"></div>
+    <div class="toast-wrap"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

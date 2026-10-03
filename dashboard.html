@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chính | Quản lý phiếu yêu cầu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="dashboard">
+
+    <!-- Khôi phục trạng thái menu trước khi vẽ để tránh giật layout -->
+    <script>try{if(localStorage.getItem("pyc_menu")==="an")document.body.classList.add("sidebar-collapsed");}catch(e){}</script>
+
+    <div class="app">
+        <aside class="sidebar" id="sidebar"></aside>
+        <div class="nav-backdrop" id="navBackdrop"></div>
+
+        <div class="main-area">
+            <header class="topbar" id="topbar"></header>
+
+            <div class="page">
+
+                <!-- Thanh tiêu đề có nút ẩn/hiện toàn bộ khu vực thống kê -->
+                <div class="section-bar" id="dashBar">
+                    <h3>&#128202; Bảng thống kê tổng quan</h3>
+                    <span class="line"></span>
+                    <button type="button" class="btn btn-outline btn-sm" id="btnToggleDash">
+                        <span class="toggle-ico">&#9660;</span>
+                        <span id="dashToggleText">Ẩn thống kê</span>
+                    </button>
+                </div>
+
+                <div id="dashboardZone">
+
+                <!-- ============ BIỂU ĐỒ ============ -->
+                <section class="chart-grid">
+                    <div class="card mb-0">
+                        <div class="card-head"><h3>Tỷ trọng theo tình trạng</h3></div>
+                        <div class="card-body">
+                            <div class="donut-wrap">
+                                <div class="donut" id="donut">
+                                    <div class="donut-center">
+                                        <div class="v" id="donutTotal">0</div>
+                                        <div class="l">phiếu</div>
+                                    </div>
+                                </div>
+                                <ul class="legend" id="donutLegend"></ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="card">
+                            <div class="card-head"><h3 id="chartLoaiTitle">Số lượng theo loại yêu cầu</h3></div>
+                            <div class="card-body"><ul class="bar-list" id="barLoai"></ul></div>
+                        </div>
+                        <div class="card mb-0">
+                            <div class="card-head"><h3 id="chartPhongTitle">Số lượng theo phòng thực hiện</h3></div>
+                            <div class="card-body"><ul class="bar-list" id="barPhong"></ul></div>
+                        </div>
+                    </div>
+                </section>
+
+                </div><!-- /#dashboardZone -->
+
+                <!-- Khôi phục trạng thái ẩn/hiện thống kê ngay khi vẽ xong khu vực -->
+                <script>try{if(localStorage.getItem("pyc_dashboard")==="an"){document.getElementById("dashboardZone").classList.add("hidden");document.getElementById("dashBar").classList.add("collapsed");}}catch(e){}</script>
+
+                <!-- ============ THẺ TỔNG HỢP ============
+                     Nằm ngoài vùng biểu đồ nên luôn hiển thị, kể cả khi đã ẩn thống kê.
+                     Nhãn và số liệu do main.js đặt lại theo chức danh
+                     (quản trị hệ thống / cấp quản lý / thành viên)      -->
+                <section class="stat-grid">
+                    <div class="stat-card">
+                        <div class="s-ico">&#128203;</div>
+                        <div>
+                            <div class="s-val" id="stV1">0</div>
+                            <div class="s-lbl" id="stL1">Tổng số phiếu yêu cầu</div>
+                            <div class="s-lbl muted" id="stDoneRate"></div>
+                        </div>
+                    </div>
+                    <div class="stat-card go">
+                        <div class="s-ico">&#128228;</div>
+                        <div>
+                            <div class="s-val" id="stV2">0</div>
+                            <div class="s-lbl" id="stL2">Phiếu yêu cầu đi</div>
+                        </div>
+                    </div>
+                    <div class="stat-card come">
+                        <div class="s-ico">&#128229;</div>
+                        <div>
+                            <div class="s-val" id="stV3">0</div>
+                            <div class="s-lbl" id="stL3">Phiếu yêu cầu đến</div>
+                        </div>
+                    </div>
+                    <div class="stat-card late">
+                        <div class="s-ico">&#9203;</div>
+                        <div>
+                            <div class="s-val" id="stV4">0</div>
+                            <div class="s-lbl" id="stL4">Phiếu đang quá hạn</div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- ============ DANH SÁCH PHIẾU ============ -->
+                <section class="card mb-0" id="tblCard">
+                    <div class="card-head" style="padding-bottom:0;border-bottom:0">
+                        <div class="tabs" style="flex:1">
+                            <button type="button" class="tab-btn active" data-tab="di">
+                                &#128228; Phiếu yêu cầu đi <span class="pill" id="tabCountDi">0</span>
+                            </button>
+                            <button type="button" class="tab-btn" data-tab="den">
+                                &#128229; Phiếu yêu cầu đến <span class="pill" id="tabCountDen">0</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="card-head">
+                        <h3 id="tblTitle">Danh sách phiếu yêu cầu đi</h3>
+                        <div class="spacer"></div>
+                        <button type="button" class="btn btn-primary btn-sm" id="btnAdd">&#43; Thêm phiếu yêu cầu</button>
+                    </div>
+
+                    <!-- Bộ lọc -->
+                    <div class="toolbar">
+                        <div class="search-box">
+                            <span class="ico">&#128269;</span>
+                            <input type="text" id="fSearch" class="form-control"
+                                   placeholder="Tìm theo mã phiếu, nội dung, đơn vị, người yêu cầu...">
+                        </div>
+                        <select id="fTinhTrang" class="form-control"></select>
+                        <select id="fLoai" class="form-control"></select>
+                        <select id="fPhong" class="form-control"></select>
+                        <button type="button" class="btn btn-warn btn-sm" id="btnResetFilter">&#8635; Xoá lọc</button>
+                    </div>
+
+                    <div class="table-wrap">
+                        <table class="data" style="min-width:1180px">
+                            <thead>
+                                <tr>
+                                    <th class="sortable" data-key="maPYC">Mã PYC <span class="arrow">&#9652;</span></th>
+                                    <th class="sortable" data-key="loaiPYC">Loại yêu cầu <span class="arrow">&#9652;</span></th>
+                                    <th>Nội dung yêu cầu</th>
+                                    <th class="sortable" data-key="donViYeuCau">Phòng yêu cầu <span class="arrow">&#9652;</span></th>
+                                    <th class="sortable" data-key="nguoiTao">Người yêu cầu <span class="arrow">&#9652;</span></th>
+                                    <th class="sortable" data-key="phongThucHien">Phòng thực hiện <span class="arrow">&#9652;</span></th>
+                                    <th class="sortable" data-key="ngayYeuCau">Ngày yêu cầu <span class="arrow">&#9652;</span></th>
+                                    <th class="sortable" data-key="thoiHan">Thời hạn <span class="arrow">&#9652;</span></th>
+                                    <th class="sortable" data-key="tinhTrang">Tình trạng <span class="arrow">&#9652;</span></th>
+                                    <th class="text-right">Thao tác</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tblBody"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination" id="pager"></div>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-root" class="backdrop"></div>
+    <div class="toast-wrap"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

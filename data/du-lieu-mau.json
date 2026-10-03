@@ -1,0 +1,147 @@
+{
+  "_ghiChu": "Dữ liệu mẫu & mô tả cấu trúc dữ liệu của ứng dụng Quản lý phiếu yêu cầu. Bản demo front-end lưu dữ liệu trong localStorage (xem js/data.js); file này dùng làm tài liệu tham chiếu khi ghép với API/back-end thật.",
+
+  "khoaLocalStorage": {
+    "pyc_users": "Danh sách nhân viên",
+    "pyc_departments": "Danh mục phòng ban",
+    "pyc_loaiyeucau": "Danh mục loại yêu cầu (thêm/sửa/xoá ở trang cấu hình)",
+    "pyc_tickets": "Danh sách phiếu yêu cầu",
+    "pyc_session": "Phiên đăng nhập hiện tại",
+    "pyc_seeded_v2": "Cờ đánh dấu đã nạp dữ liệu mẫu"
+  },
+
+  "danhMuc": {
+    "huong": [
+      { "id": "di", "ten": "Phiếu yêu cầu đi" },
+      { "id": "den", "ten": "Phiếu yêu cầu đến" }
+    ],
+    "tinhTrang": [
+      { "id": "moi", "ten": "Mới tạo", "mau": "#0A74C4" },
+      { "id": "dangxuly", "ten": "Đang xử lý", "mau": "#E08A00" },
+      { "id": "choduyet", "ten": "Chờ duyệt", "mau": "#7C4DBE" },
+      { "id": "hoanthanh", "ten": "Hoàn thành", "mau": "#18A058" },
+      { "id": "tuchoi", "ten": "Từ chối", "mau": "#D63A3A" }
+    ],
+    "uuTien": [
+      { "id": "thap", "ten": "Thấp" },
+      { "id": "binhthuong", "ten": "Bình thường" },
+      { "id": "cao", "ten": "Cao" },
+      { "id": "khancap", "ten": "Khẩn cấp" }
+    ],
+    "chucDanh": [
+      { "id": "nhanvien", "ten": "Thành viên" },
+      { "id": "quanly", "ten": "Cấp quản lý" },
+      { "id": "admin", "ten": "Quản trị hệ thống" }
+    ],
+    "_quyenCapNhatTinhTrang": {
+      "nguoiThucHien": ["moi", "dangxuly", "choduyet"],
+      "nguoiTao": ["hoanthanh", "tuchoi"]
+    }
+  },
+
+  "phongBan": [
+    { "id": "p1", "maPhong": "P.HCNS", "tenPhong": "Phòng Hành chính - Nhân sự", "truongPhong": "Nguyễn Thị Minh Thư", "ghiChu": "Tầng 3 - Toà nhà chính", "ngayTao": "2024-01-05" },
+    { "id": "p2", "maPhong": "P.CNTT", "tenPhong": "Phòng Công nghệ thông tin", "truongPhong": "Trần Quốc Bảo", "ghiChu": "Tầng 5 - Toà nhà chính", "ngayTao": "2024-01-05" }
+  ],
+
+  "loaiYeuCau": [
+    { "id": "muasam", "ten": "Mua sắm tài sản", "moTa": "Đề nghị mua sắm trang thiết bị, công cụ dụng cụ", "ngayTao": "2024-01-05" },
+    { "id": "cntt", "ten": "Hỗ trợ CNTT", "moTa": "Hỗ trợ kỹ thuật, cấp quyền, xử lý sự cố hệ thống", "ngayTao": "2024-01-05" }
+  ],
+
+  "nhanVien": [
+    {
+      "_ghiChu": "Mật khẩu ở bản demo để dạng thô cho dễ thử nghiệm. Khi ghép back-end phải băm (hash) và không trả về client.",
+      "id": "u0",
+      "username": "admin",
+      "password": "123456",
+      "hoTen": "Quản trị hệ thống",
+      "email": "admin@acb.com.vn",
+      "maPhong": "P.CNTT",
+      "soDienThoai": "0900000000",
+      "chucDanh": "admin",
+      "nguoiQuanLy": "",
+      "ngayTao": "2024-01-01"
+    },
+    {
+      "id": "u6",
+      "username": "dungnt",
+      "password": "123456",
+      "hoTen": "Ngô Tiến Dũng",
+      "email": "dung.nt@acb.com.vn",
+      "maPhong": "P.CNTT",
+      "soDienThoai": "0956789012",
+      "chucDanh": "nhanvien",
+      "nguoiQuanLy": "baotq",
+      "_nguoiQuanLy": "username của một nhân sự có chức danh quanly hoặc admin",
+      "ngayTao": "2024-04-20"
+    }
+  ],
+
+  "phieuYeuCau": [
+    {
+      "id": "t1",
+      "huong": "di",
+      "maPYC": "YCD-2026-0001",
+      "loaiPYC": "muasam",
+      "donViYeuCau": "P.HCNS",
+      "_donViYeuCau": "Phòng yêu cầu: mã phòng nội bộ hoặc tên đơn vị bên ngoài (chi nhánh, phòng giao dịch)",
+      "ngayYeuCau": "2026-09-01",
+      "thoiHan": "2026-09-17",
+      "noiDung": "Đề nghị mua sắm 15 bộ máy tính để bàn phục vụ nhân sự mới tuyển dụng quý này.",
+      "phongThucHien": "P.CNTT",
+      "nguoiThucHien": "Ngô Tiến Dũng",
+      "nguoiThucHienUser": "dungnt",
+      "_nguoiThucHienUser": "username - dùng để xét quyền cập nhật tình trạng và lọc phạm vi dữ liệu",
+      "tinhTrang": "dangxuly",
+      "uuTien": "cao",
+      "nguoiTao": "Nguyễn Thị Minh Thư",
+      "nguoiTaoUser": "thuntm",
+      "_nguoiTaoUser": "username - người yêu cầu, đồng thời là người duy nhất được sửa/xoá phiếu",
+      "ngayTao": "2026-09-01",
+      "ngayCapNhat": "2026-09-05",
+      "files": [
+        {
+          "id": "f1",
+          "ten": "bang-bao-gia.pdf",
+          "kichThuoc": 284512,
+          "loai": "application/pdf",
+          "duLieu": "data:application/pdf;base64,... (bản demo lưu nội dung tệp dạng Data URL; back-end thật nên lưu đường dẫn trong thư mục filedinhkem/)",
+          "nguoiTai": "Nguyễn Thị Minh Thư",
+          "ngayTai": "2026-09-01T09:15:00.000Z"
+        }
+      ],
+      "lichSu": [
+        {
+          "tinhTrang": "moi",
+          "thoiGian": "2026-09-01T08:30:00",
+          "nguoi": "Nguyễn Thị Minh Thư",
+          "nguoiUser": "thuntm",
+          "vaiTro": "Người tạo phiếu",
+          "ghiChu": "Khởi tạo phiếu yêu cầu",
+          "files": []
+        },
+        {
+          "tinhTrang": "dangxuly",
+          "thoiGian": "2026-09-05T14:05:00",
+          "nguoi": "Ngô Tiến Dũng",
+          "nguoiUser": "dungnt",
+          "vaiTro": "Người thực hiện",
+          "ghiChu": "Đã tiếp nhận và lấy báo giá",
+          "_files": "Bằng chứng đính kèm của riêng lần cập nhật tình trạng này, cùng cấu trúc với mục files của phiếu",
+          "files": [
+            {
+              "id": "f2",
+              "ten": "bien-ban-tiep-nhan.jpg",
+              "kichThuoc": 154233,
+              "loai": "image/jpeg",
+              "duLieu": "data:image/jpeg;base64,...",
+              "nguoiTai": "Ngô Tiến Dũng",
+              "ngayTai": "2026-09-05T14:05:00.000Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập | Quản lý phiếu yêu cầu</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="login-page" data-page="login">
+
+    <div class="login-card">
+        <!-- Cột giới thiệu -->
+        <div class="login-visual">
+            <div class="brand">
+                <div class="brand-mark">PYC</div>
+                <div class="brand-name">Quản lý phiếu yêu cầu<small>Hệ thống yêu cầu nội bộ</small></div>
+            </div>
+            <h2>Quản lý phiếu yêu cầu đi &amp; đến trên một nền tảng</h2>
+            <p>Theo dõi tiến độ xử lý, phân công phòng thực hiện và thống kê nhanh theo từng loại phiếu.</p>
+            <ul>
+                <li><span class="tick">&#10003;</span><span>Quản lý tập trung phiếu yêu cầu đi và đến</span></li>
+                <li><span class="tick">&#10003;</span><span>Cập nhật tình trạng và đính kèm hồ sơ theo từng phiếu</span></li>
+                <li><span class="tick">&#10003;</span><span>Dashboard thống kê theo loại phiếu và tình trạng</span></li>
+                <li><span class="tick">&#10003;</span><span>Cấu hình phòng ban và nhân sự linh hoạt</span></li>
+            </ul>
+        </div>
+
+        <!-- Cột biểu mẫu đăng nhập -->
+        <div class="login-form-wrap">
+            <h1>Đăng nhập hệ thống</h1>
+            <p class="sub">Vui lòng sử dụng tài khoản nội bộ được cấp.</p>
+
+            <form id="frmLogin" novalidate>
+                <div class="form-group">
+                    <label for="username">Tên đăng nhập <span class="req">*</span></label>
+                    <div class="input-icon">
+                        <span class="ico">&#128100;</span>
+                        <input type="text" id="username" name="username" class="form-control"
+                               placeholder="Nhập tên đăng nhập" autocomplete="username">
+                    </div>
+                    <div class="field-error"></div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Mật khẩu <span class="req">*</span></label>
+                    <div class="input-icon">
+                        <span class="ico">&#128274;</span>
+                        <input type="password" id="password" name="password" class="form-control"
+                               placeholder="Nhập mật khẩu" autocomplete="current-password">
+                        <button type="button" class="toggle-pass" title="Hiện/ẩn mật khẩu">&#128065;</button>
+                    </div>
+                    <div class="field-error"></div>
+                </div>
+
+                <div class="form-inline-between">
+                    <label class="checkbox">
+                        <input type="checkbox" name="remember"> Ghi nhớ đăng nhập
+                    </label>
+                    <a href="#" id="linkForgot">Quên mật khẩu?</a>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-lg" id="btnLogin">Đăng nhập</button>
+            </form>
+
+            <div class="demo-hint">
+                Tài khoản dùng thử (mật khẩu <b>123456</b>):<br>
+                <b><a href="#" data-demo="admin">admin</a></b> &mdash; quản trị hệ thống &middot;
+                <b><a href="#" data-demo="baotq">baotq</a></b> &mdash; cấp quản lý P.CNTT &middot;
+                <b><a href="#" data-demo="dungnt">dungnt</a></b> &mdash; thành viên P.CNTT
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-root" class="backdrop"></div>
+    <div class="toast-wrap"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
