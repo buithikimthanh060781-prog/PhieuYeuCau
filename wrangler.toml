@@ -1,0 +1,30 @@
+name = "phieuyeucau"
+main = "worker/src/index.ts"
+compatibility_date = "2024-09-23"
+
+# Giao diện tĩnh (index.html, dashboard.html, css/, js/, data/...) - phục vụ
+# y hệt nội dung hiện có, không qua Jinja/bundler nào. .assetsignore loại
+# các tệp backend (Python, .db, worker/, migrations/...) khỏi gói phục vụ.
+[assets]
+directory = "."
+binding = "ASSETS"
+not_found_handling = "none"
+
+# D1 (SQLite) - thay cho phieuyeucau.db. Sau khi chạy `wrangler d1 create
+# phieuyeucau`, dán database_id được trả về vào đây.
+[[d1_databases]]
+binding = "DB"
+database_name = "phieuyeucau"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
+migrations_dir = "migrations"
+
+# R2 - thay cho thư mục filedinhkem/. Tên bucket phải khớp với
+# `wrangler r2 bucket create phieuyeucau-filedinhkem`.
+[[r2_buckets]]
+binding = "FILES"
+bucket_name = "phieuyeucau-filedinhkem"
+
+# SESSION_SECRET và SEED_SECRET KHÔNG đặt ở đây - đặt bằng:
+#   wrangler secret put SESSION_SECRET
+#   wrangler secret put SEED_SECRET
+# (môi trường dev local dùng file .dev.vars, xem .dev.vars.example)

@@ -1,0 +1,23 @@
+# Chỉ các tệp giao diện tĩnh (html/css/js/data) mới được Cloudflare Workers
+# Static Assets công khai phục vụ - mọi thứ dưới đây thuộc về backend Python
+# (dev local) hoặc mã nguồn Worker, không phải tài nguyên tĩnh của trang.
+*.py
+*.db
+__pycache__/
+instance/
+filedinhkem/
+worker/
+migrations/
+node_modules/
+.wrangler/
+wrangler.toml
+wrangler.jsonc
+package.json
+package-lock.json
+tsconfig.json
+requirements.txt
+schema.sql
+.git/
+.gitignore
+.assetsignore
+README.md

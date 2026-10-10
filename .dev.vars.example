@@ -1,0 +1,6 @@
+# Sao chép file này thành ".dev.vars" (không commit) để chạy `wrangler dev`
+# cục bộ. Trên Cloudflare thật, hai biến này đặt bằng:
+#   wrangler secret put SESSION_SECRET
+#   wrangler secret put SEED_SECRET
+SESSION_SECRET=doi-chuoi-nay-khi-trien-khai-that
+SEED_SECRET=doi-chuoi-nay-khi-trien-khai-that
